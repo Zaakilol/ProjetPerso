@@ -26,6 +26,7 @@ public class EnemyDetection : MonoBehaviour
             {
                 if (hitInfo.collider.gameObject == other.gameObject)
                 {
+                    Debug.Log(other.gameObject.name);
                     EnemyManager managerTarget = other.gameObject.GetComponent<EnemyManager>();
                     managerTarget.inFlashLight();
                 }

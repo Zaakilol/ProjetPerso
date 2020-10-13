@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     public int alertLevel = 0;
     float flashLightTimer = 0;
     float downTime = -1;
-    public MeshRenderer currentMaterial;
+    public SkinnedMeshRenderer currentMaterial;
     public float hp = 50;
     float globalAlertTimer = 2;
     public GameObject angerLight1;
@@ -21,12 +21,13 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        activeTimer = Random.Range(10f, 20f);
+        activeTimer = Random.Range(20f, 30f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(activeTimer);
         activeTimer -= Time.deltaTime;
         anim.SetInteger("AlertLevel", alertLevel);
         angerLight1.SetActive(false);
@@ -50,6 +51,7 @@ public class EnemyManager : MonoBehaviour
         {
             alertLevel = 0;
             downTime = -1;
+            activeTimer = Random.Range(20, 30);
         }
         else if (alertLevel == 3)
         {
@@ -73,7 +75,7 @@ public class EnemyManager : MonoBehaviour
             alertLevel = 1;
             flashLightTimer = 1;
             downTime = -4;
-            activeTimer = Random.Range(10, 20);
+            activeTimer = Random.Range(20, 30);
         }
     }
 
@@ -81,6 +83,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (flashLightTimer <= 0)
         {
+            activeTimer = 1000;
             switch (alertLevel)
             {
                 case (0):
